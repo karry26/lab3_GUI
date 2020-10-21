@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename as opf
 
-from histgram import hist
-from keyword import keyword_check
+#from histgram import hist
+#from keyword import keyword_check
 
 global file_path 
 global keyword_path 
