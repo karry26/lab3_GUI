@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename as opf
 
-#from histgram import hist
-#from keyword import keyword_check
+from histogram import hist
+from keyword_check import keyword_check
 
 global file_path 
 global keyword_path 
@@ -16,8 +16,11 @@ def get_path(keyword):
 	
 	if keyword:
 		keyword_path = opf()
+		
 	else:
 		file_path = opf() 
+
+		
 		
 	
 def edit_file(path):
@@ -73,3 +76,4 @@ def make_gui():
 	
 if __name__=="__main__":
 	make_gui()
+	
