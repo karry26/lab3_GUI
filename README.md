@@ -12,15 +12,15 @@ The most frequent word in the txt file
 Histogram of word frequency in input file
 Given a keyword file , output the lines containing those words in keyword file.
 
-<b> Requirements <b> Python3,tkinter, matplotlib
+<b> Requirements </b> Python3,tkinter, matplotlib
 
 <h3> How to run ? </h3>
-   1. Clone this repo using git clone 
+   1. Clone this repo using git clone <br>
    2. Install the requires dependencies
    3. Run main.py
    4. GUI will pop up ,load the file and get the results
  
-<h3> GUI Documentation </hr>
+<h3> GUI Documentation </h3>
    1. Click on load file and choose the text file (eg. lap.txt in the folder)
    2. Click Print histogram to get the stats and histogram for the file
    3. To include keyword file load Keyword file and click on Keyword check to get the results
