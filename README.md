@@ -5,12 +5,12 @@ Umesh B18089<br>
 Vishal Siwach B18091<br>
 Mohit Sharma B18071<br>
 Hridayesh Akhand B18057<br>
-<br>
-<h3> File Stats </h3><br>
+
+<h3> File Stats </h3>
 The main aim of the app is to quantify certain statistics of a txt file. It displays stats like<br>
-The most frequent word in the txt file <br>
-Histogram of word frequency in input file<br>
-Given a keyword file , output the lines containing those words in keyword file.<br>
+  1. The most frequent word in the txt file <br>
+  2. Histogram of word frequency in input file<br>
+  3. Given a keyword file , output the lines containing those words in keyword file.<br>
 
 <b> Requirements </b> Python3,tkinter, matplotlib
 
