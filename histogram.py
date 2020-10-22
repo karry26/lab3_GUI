@@ -2,9 +2,9 @@ from collections import defaultdict
 import re
 import matplotlib.pyplot as plt
 
-
-
-def hist(file_path):
+from tkinter import *
+from tkinter.filedialog import askopenfilename as opf
+def hist(ans,file_path,box):
 	file = open(file_path, "r")
 	banned = defaultdict(lambda:0)
 	result = defaultdict(lambda:0) 
@@ -43,20 +43,23 @@ def hist(file_path):
 	
 	maxfrequent = max(result, key=result.get) 
 	minfrequent = min(result, key=result.get)
-	print("Most frequent used word is : ",maxfrequent) 
-	print("Least frequent used word is : ",minfrequent) 
-	print("Number of lines used in file: ",numlines)
+	#print("Most frequent used word is : ",maxfrequent) 
+	#print("Least frequent used word is : ",minfrequent) 
+	#print("Number of lines used in file: ",numlines)
 	histlist=[]
 	for i in result.values():
 	    histlist.append(i)
-	print(histlist)
+	#print(histlist)
 	plt.xlabel('frequency range')
 	plt.ylabel('total no of words')
 	plt.title('freq vs words')
 	#plt.bar(result.keys(), result.values(), width=.5, color='g')
 	plt.hist(histlist,bins=5,rwidth=.70,color='g')
 	plt.show()
-
+	ans.append([maxfrequent,minfrequent,numlines])
+	label=Label(box,text=ans,bg="red")
+	label.grid()
+	
 #hist(file)
 
         

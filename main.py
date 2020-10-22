@@ -49,12 +49,16 @@ def edit_file(path):
 				window.destroy()
 		
 
-	
 def make_gui():
 
 	box=Tk()
 	box.title("LAP_LAB3")
-
+	#w=Canvas(box,width=40,height=60)
+	#w.pack()
+	#canvas_height=20
+	#canvas_width=200
+	#y=int(canvas_height/2)
+	#w.create_line(0,y,canvas_width,y)
 		
 	btn1 = Button(box, text="Load File", command=lambda: get_path(False))
 	btn1.grid(column=0, row=0)
@@ -64,11 +68,16 @@ def make_gui():
 	btn3.grid(column=2, row=0)
 	btn4 = Button(box, text="Edit Keyword", command=lambda: edit_file(keyword_path))
 	btn4.grid(column=3, row=0)
-	
-	btn5 = Button(box, text="Print Histogram", command=lambda: hist(file_path))
+	ans1=[]
+	ans2=[]
+	btn5 = Button(box, text="Print Histogram", command=lambda: hist(ans1,file_path,box))
 	btn5.grid(column=1, row=1)
-	btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(file_path,keyword_path))
+	btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(ans2,file_path,keyword_path,box))
+	
 	btn6.grid(column=2, row=1)
+	
+	
+	
 
 	
 	
