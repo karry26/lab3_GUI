@@ -1,11 +1,7 @@
 from collections import defaultdict
 import re
 
-from tkinter import *
-from tkinter.filedialog import askopenfilename as opf
-
-
-def keyword_check(ans,path_file1,path_file2,box):
+def keyword_check(ans,path_file1,path_file2):
     file1=open(path_file1,"r")
     file2=open(path_file2,"r")
     include_words = defaultdict(lambda:0)
@@ -40,13 +36,9 @@ def keyword_check(ans,path_file1,path_file2,box):
                     flag=1
                 i+=1
             if(flag==1):
-                label=Label(box,text=line1,bg="red")
-                label.grid()
                 lines_with_words.append(line1)
                 
     ans.append(lines_with_words)
-    
-    #print(lines_with_words)
 
     
     

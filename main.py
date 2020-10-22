@@ -1,28 +1,24 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename as opf
+from PIL import ImageTk,Image  
 
 from histogram import hist
 from keyword_check import keyword_check
 
-global file_path 
-global keyword_path 
-
 file_path = ""
 keyword_path = ""
 	
+#load the file
 def get_path(keyword):
 	global file_path 
 	global keyword_path 
 	
 	if keyword:
 		keyword_path = opf()
-		
 	else:
-		file_path = opf() 
-
+		file_path = opf()
 		
-		
-	
+#open an editor to edit the file
 def edit_file(path):
 		window = Tk()
 		window.title("Editor")
@@ -48,40 +44,98 @@ def edit_file(path):
 				file.close()
 				window.destroy()
 		
+#Function to print the histogram of words
+def print_hist():
+	
+	global file_path	
+	
+	hist_box = Tk()
+	hist_box.title("Histogram")
+	
+	if file_path == "":
+		Label(hist_box, text = "Please select file first!").pack()
+		exit = Button(hist_box, text="Exit", command=lambda: hist_box.destroy()).pack()
+		
+	else:
+		ans=[]
+		hist(ans,file_path)
+		
+		canvas = Canvas(hist_box, width = 680, height = 420)
+		canvas.pack()
+		
+		
+		img = ImageTk.PhotoImage(Image.open("./histogram.png"), master = canvas) 
+		canvas.create_image(0,0, anchor=NW, image=img)
 
+		text = "Most frequent used word is : "+str(ans[0][0])+"\n"+"Least frequent used word is : "+str(ans[0][1])+"\n"+"Number of lines used in file: "+str(ans[0][2])
+		
+		label=Label(hist_box,text=text).pack()
+		
+		exit = Button(hist_box, text="Exit", command=lambda: hist_box.destroy()).pack()
+		
+		mainloop()
+	
+#Function to print the lines with keyword
+def print_lines():
+
+	global file_path
+	global keyword_path
+	
+	lines_box = Tk()
+	lines_box.title("Lines with Keywords")
+	
+	
+	if file_path == "" or keyword_path == "":
+		if file_path == "":
+			Label(lines_box, text = "Please select file first!").pack()
+		if keyword_path =="":
+			Label(lines_box, text = "Please select Keyword file first!").pack()
+		exit = Button(lines_box, text="Exit", command=lambda: lines_box.destroy()).pack()
+		
+	else:
+		ans = []
+		keyword_check(ans,file_path,keyword_path)
+		
+		text = ""
+		
+		for i in range(0,len(ans[0])):
+			text = text + str(ans[0][i]) + "\n"
+			
+		label=Label(lines_box,text=text).pack()
+		
+		exit = Button(lines_box, text="Exit", command=lambda: lines_box.destroy()).pack()
+	
+	
+# main UI
 def make_gui():
 
 	box=Tk()
 	box.title("LAP_LAB3")
-	#w=Canvas(box,width=40,height=60)
-	#w.pack()
-	#canvas_height=20
-	#canvas_width=200
-	#y=int(canvas_height/2)
-	#w.create_line(0,y,canvas_width,y)
-		
-	btn1 = Button(box, text="Load File", command=lambda: get_path(False))
-	btn1.grid(column=0, row=0)
-	btn2 = Button(box, text="Load Keyword File", command=lambda:get_path(True))
-	btn2.grid(column=1, row=0)
-	btn3 = Button(box, text="Edit File", command=lambda: edit_file(file_path))
-	btn3.grid(column=2, row=0)
-	btn4 = Button(box, text="Edit Keyword", command=lambda: edit_file(keyword_path))
-	btn4.grid(column=3, row=0)
-	ans1=[]
-	ans2=[]
-	btn5 = Button(box, text="Print Histogram", command=lambda: hist(ans1,file_path,box))
-	btn5.grid(column=1, row=1)
-	btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(ans2,file_path,keyword_path,box))
-	
-	btn6.grid(column=2, row=1)
-	
-	
-	
 
+	load_file = Button(box,    text="Load File                ", command=lambda: get_path(False))
+	load_file.grid(column=0, row=0)
 	
+	load_keyword = Button(box, text="Load Keyword File", command=lambda:get_path(True))
+	load_keyword.grid(column=0, row=1)
+	
+	edit_file = Button(box, text="Edit File        ", command=lambda: edit_file(file_path))
+	edit_file.grid(column=1, row=0)
+	
+	edit_keywords = Button(box, text="Edit Keyword", command=lambda: edit_file(keyword_path))
+	edit_keywords.grid(column=1, row=1)
+	
+	histogram = Button(box, text="Print Histogram", command=lambda: print_hist())
+	histogram.grid(column=2, row=0)
+	
+	lines = Button(box, text="Keyword Check", command=lambda: print_lines())
+	lines.grid(column=2, row=1)
+	
+	exit = Button(box, text="Exit", command=lambda: box.destroy())
+	exit.grid(column=1)
 	
 	box.mainloop()
+	
+	
 	
 if __name__=="__main__":
 	make_gui()
