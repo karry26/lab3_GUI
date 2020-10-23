@@ -118,11 +118,11 @@ def make_gui():
 	load_keyword = Button(box, text="Load Keyword File", command=lambda:get_path(True))
 	load_keyword.grid(column=0, row=1)
 	
-	edit_file = Button(box, text="Edit File        ", command=lambda: edit_file(file_path))
-	edit_file.grid(column=1, row=0)
+	editFile = Button(box, text="Edit File        ", command=lambda: edit_file(file_path))
+	editFile.grid(column=1, row=0)
 	
-	edit_keywords = Button(box, text="Edit Keyword", command=lambda: edit_file(keyword_path))
-	edit_keywords.grid(column=1, row=1)
+	editKeywords = Button(box, text="Edit Keyword", command=lambda: edit_file(keyword_path))
+	editKeywords.grid(column=1, row=1)
 	
 	histogram = Button(box, text="Print Histogram", command=lambda: print_hist())
 	histogram.grid(column=2, row=0)
