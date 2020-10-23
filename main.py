@@ -14,9 +14,9 @@ def get_path(keyword):
 	global keyword_path 
 	
 	if keyword:
-		keyword_path = opf()
+		keyword_path = opf(filetypes =[("txt files","*.txt"),("All files","*.*")])
 	else:
-		file_path = opf()
+		file_path = opf(filetypes =[("txt files","*.txt"),("All files","*.*")])
 		
 #open an editor to edit the file
 def edit_file(path):
@@ -60,9 +60,8 @@ def print_hist():
 		ans=[]
 		hist(ans,file_path)
 		
-		canvas = Canvas(hist_box, width = 680, height = 420)
+		canvas = Canvas(hist_box, width = 1000, height = 600)
 		canvas.pack()
-		
 		
 		img = ImageTk.PhotoImage(Image.open("./histogram.png"), master = canvas) 
 		canvas.create_image(0,0, anchor=NW, image=img)
@@ -102,6 +101,7 @@ def print_lines():
 			text = text + str(ans[0][i]) + "\n"
 			
 		label=Label(lines_box,text=text).pack()
+
 		
 		exit = Button(lines_box, text="Exit", command=lambda: lines_box.destroy()).pack()
 	
